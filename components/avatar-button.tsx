@@ -7,9 +7,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "./ui/button";
-import { Label } from "@radix-ui/react-label";
-import { Input } from "./ui/input";
-import { LogOut } from "lucide-react";
 import LogoutButton from "./logout-button";
 
 export default function AvatarButton() {
@@ -18,10 +15,12 @@ export default function AvatarButton() {
       <div className="absolute top-4 right-4">
         <Popover>
           <PopoverTrigger asChild>
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            <Button variant="ghost" size="icon">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </Button>
           </PopoverTrigger>
           <PopoverContent
             className="w-60"

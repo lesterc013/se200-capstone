@@ -42,22 +42,22 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        <SidebarGroup>
+        <SidebarGroup className="my-10">
           {/* <SidebarGroupLabel>Welcome name</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.title} className="my-2">
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <SidebarMenuButton asChild>
-                          <Link href={item.url}>
+                          <Link href={item.url} className="flex justify-center">
                             <item.icon />
                           </Link>
                         </SidebarMenuButton>
                       </TooltipTrigger>
-                      <TooltipContent>
+                      <TooltipContent side="right">
                         <p>{item.title}</p>
                       </TooltipContent>
                     </Tooltip>
