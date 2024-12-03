@@ -18,7 +18,6 @@ export default function RootLayout({
           }}
         >
           <AppSidebar />
-          <SidebarTrigger />
           <AvatarButton />
           {children}
         </SidebarProvider>
