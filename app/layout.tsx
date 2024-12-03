@@ -1,6 +1,7 @@
 import "../globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import AvatarButton from "@/components/avatar-button";
 
 export default function RootLayout({
   children,
@@ -18,6 +19,7 @@ export default function RootLayout({
         >
           <AppSidebar />
           <SidebarTrigger />
+          <AvatarButton />
           {children}
         </SidebarProvider>
       </body>
