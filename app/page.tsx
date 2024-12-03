@@ -1,6 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import AvatarButton from "@/components/avatar-button";
-
 export default function Page() {
   return (
     <>
