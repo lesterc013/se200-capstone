@@ -12,3 +12,27 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// policy_holders table linked to insurance_policies through 
+// policy_holder_id | policy_holder_email | policy_holder_first_name | policy_holder_last_name | insurance_policy_id
+model PolicyHolder {
+  id                String            @id // PH001 etc
+  email             String            @unique
+  firstName         String
+  lastName          String
+  insurancePolicies InsurancePolicy[]
+}
+
+// One holder can have many policies
+// But one policy can have many holders
+// So is many to many
+
+// insurance_policies table
+// insurance_policy_id | insurance_policy_name | base_price_sgd | type_of_policy | policy_holder_id
+model InsurancePolicy {
+  id            String         @id // IP001 etc
+  name          String
+  price         Int
+  type          String
+  policyHolders PolicyHolder[]
+}
