@@ -1,17 +1,17 @@
 import AddButton from "@/components/add-button";
-import { db } from "@/db";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { PoliciesTable } from "@/components/policies-table";
+import { getPoliciesPaged } from "@/actions/getPoliciesPaged";
 
-export default async function Page() {
-  const insurancePolicies = await db.insurancePolicy.findMany();
+/// Policies page that will extract the currentOffset from the searchParams which is pushed from the nextPage button
+/// Then calls the getPoliciesPaged server action to retrieve the relevant data
+/// Then renders PoliciesTable which will display the data + configure the prev and next buttons
+export default async function Page({ searchParams }) {
+  const currentOffset = searchParams.currentOffset ?? 0;
+  const rowsPerPage = 5;
+  const { policies, nextOffset, totalPosts } = await getPoliciesPaged(
+    Number(currentOffset),
+    rowsPerPage
+  );
 
   return (
     <>
@@ -19,42 +19,12 @@ export default async function Page() {
         <div className="my-4 mx-4">
           <AddButton textWithin="Add Policy" path="/policies/add" />
         </div>
-        <div className="my-4 mx-4">
-          <h1 className="text-3xl font-bold underline">Hello policies!</h1>
-        </div>
-        <div className="my-4 mx-4">
-          <Table>
-            <TableCaption>A list of your recent invoices.</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[100px]">ID</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead className="text-right">Type</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {insurancePolicies.map((insurancePolicy) => (
-                <TableRow key={insurancePolicy.id}>
-                  <TableCell className="font-medium">
-                    {insurancePolicy.id}
-                  </TableCell>
-                  <TableCell>{insurancePolicy.name}</TableCell>
-                  <TableCell>{insurancePolicy.price}</TableCell>
-                  <TableCell className="text-right">
-                    {insurancePolicy.type}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-            {/* <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
-          </TableRow>
-        </TableFooter> */}
-          </Table>
-        </div>
+        <PoliciesTable
+          policies={policies}
+          nextOffset={nextOffset}
+          rowsPerPage={rowsPerPage}
+          totalPosts={totalPosts}
+        />
       </div>
     </>
   );
