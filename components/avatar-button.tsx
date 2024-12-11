@@ -17,8 +17,8 @@ export default function AvatarButton() {
           <PopoverTrigger asChild>
             <Button variant="ghost" size="icon">
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarImage src="https://www.clipartmax.com/png/small/68-684645_pinhead-larry-by-kawaii-oekaki-chan-on-deviantart-patrick-star-pinhead-larry.png" />
+                <AvatarFallback>OK</AvatarFallback>
               </Avatar>
             </Button>
           </PopoverTrigger>

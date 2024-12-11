@@ -18,17 +18,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 /// Main component rendering the table, and also responsible to configure the next button to control the next offset
-export function PoliciesTable({
-  policies,
+export function CustomersTable({
+  customers,
   nextOffset,
   rowsPerPage,
   totalPosts,
 }: {
-  policies: any[];
+  customers: any[];
   nextOffset: number;
   rowsPerPage: number;
   totalPosts: number;
@@ -38,33 +39,45 @@ export function PoliciesTable({
     router.back();
   }
   function nextPage() {
-    router.push(`/policies/?currentOffset=${nextOffset}`);
+    router.push(`/customers/?currentOffset=${nextOffset}`);
   }
 
   return (
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Policies</CardTitle>
-          <CardDescription>View all your policies</CardDescription>
+          <CardTitle>Policy Holders</CardTitle>
+          <CardDescription>View all your policy holders</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[100px]">ID</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Type</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>First Name</TableHead>
+                <TableHead>Last Name</TableHead>
+                <TableHead>Policies Held</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {policies.map((policy) => (
-                <TableRow key={policy.id}>
-                  <TableCell className="font-medium">{policy.id}</TableCell>
-                  <TableCell>{policy.name}</TableCell>
-                  <TableCell>{policy.price}</TableCell>
-                  <TableCell>{policy.type}</TableCell>
+              {customers.map((customer) => (
+                <TableRow key={customer.id}>
+                  <TableCell className="font-medium">{customer.id}</TableCell>
+                  <TableCell>{customer.email}</TableCell>
+                  <TableCell>{customer.firstName}</TableCell>
+                  <TableCell>{customer.lastName}</TableCell>
+                  <TableCell>
+                    {customer.insurancePolicies.map((insurancePolicy) => (
+                      <Badge
+                        variant="outline"
+                        className="mr-2"
+                        key={insurancePolicy.id}
+                      >
+                        {insurancePolicy.name}
+                      </Badge>
+                    ))}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -78,7 +91,7 @@ export function PoliciesTable({
                 {Math.min(nextOffset - rowsPerPage, totalPosts) + 1}-
                 {Math.min(nextOffset, totalPosts)}
               </strong>{" "}
-              of <strong>{totalPosts}</strong> posts
+              of <strong>{totalPosts}</strong> customers
             </div>
             <div className="flex">
               <Button
