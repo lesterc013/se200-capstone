@@ -10,14 +10,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-gray-100">
         <SidebarProvider
           style={{
-            "--sidebar-width": "5rem",
-            "--sidebar-width-mobile": "5rem",
+            "--sidebar-width": "3rem",
           }}
         >
           <AppSidebar />
+          <SidebarTrigger />
           <AvatarButton />
           {children}
         </SidebarProvider>

@@ -20,8 +20,8 @@ export default function Page() {
                 <Frown />
                 <Frown />
                 <Frown />
-                Apologies for the lack of error handling and really messy code;
-                time was not on my side
+                Apologies for the lack of error handling and really messy code
+                cos time was not my friend haha
                 <Frown />
                 <Frown />
                 <Frown />
