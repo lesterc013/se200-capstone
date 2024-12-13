@@ -2,12 +2,15 @@ import "../globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import AvatarButton from "@/components/avatar-button";
+import { auth, signOut } from "@/lib/auth";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
     <html lang="en">
       <body className="bg-gray-100">
@@ -16,9 +19,16 @@ export default function RootLayout({
             "--sidebar-width": "3rem",
           }}
         >
-          <AppSidebar />
+          {session ? (
+            <>
+              <AppSidebar />
+              <SidebarTrigger />
+              <AvatarButton />
+            </>
+          ) : null}
+          {/* <AppSidebar />
           <SidebarTrigger />
-          <AvatarButton />
+          <AvatarButton /> */}
           {children}
         </SidebarProvider>
       </body>
