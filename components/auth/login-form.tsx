@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import Link from "next/link";
 
 import { FormError } from "../form-error";
 
@@ -90,16 +91,6 @@ export const LoginForm = () => {
                           type="password"
                         />
                       </FormControl>
-                      {/* <Button
-                      size="sm"
-                      variant="link"
-                      asChild
-                      className="px-0 font-normal"
-                    >
-                      <Link href="/auth/reset">
-                        Forgot password?
-                      </Link>
-                    </Button> */}
                       <FormMessage />
                     </FormItem>
                   )}
@@ -110,6 +101,12 @@ export const LoginForm = () => {
               <FormError message={error} />
 
               <Button type="submit">Login</Button>
+              <div className="text-center text-sm">
+                Don&apos;t have an account?{" "}
+                <Link href="/register" className="underline underline-offset-4">
+                  Register
+                </Link>
+              </div>
             </form>
           </Form>
         </CardContent>

@@ -26,9 +26,6 @@ export default async function RootLayout({
               <AvatarButton />
             </>
           ) : null}
-          {/* <AppSidebar />
-          <SidebarTrigger />
-          <AvatarButton /> */}
           {children}
         </SidebarProvider>
       </body>

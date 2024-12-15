@@ -1,13 +1,12 @@
-import { Button } from "./ui/button";
-import Link from "next/link";
 import { LogOutIcon } from "lucide-react";
+import { logout } from "@/actions/logout";
 
 export default function LogoutButton() {
   return (
-    <Button asChild size="icon" variant="outline">
-      <Link href="/logout">
-        <LogOutIcon />
-      </Link>
-    </Button>
+    <form action={logout}>
+      <button type="submit">
+        <LogOutIcon size={12} />
+      </button>
+    </form>
   );
 }

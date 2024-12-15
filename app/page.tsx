@@ -6,11 +6,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Authentication } from "@/components/authentication";
+
 import Link from "next/link";
 import { Frown } from "lucide-react";
 
 import { auth, signOut } from "@/lib/auth";
+import { LoginForm } from "@/components/auth/login-form";
 
 export default async function Page() {
   const session = await auth();
@@ -40,19 +42,7 @@ export default async function Page() {
           </Card>
         ) : (
           <>
-            <h1 className="text-4xl font-bold">Welcome to Heicoders!</h1>
-            <div className="flex flex-row space-x-10">
-              <Button className="mt-8">
-                <Link href="/login" className="hover:underline">
-                  Log In
-                </Link>
-              </Button>
-              <Button className="mt-8">
-                <Link href="/register" className="hover:underline">
-                  Register
-                </Link>
-              </Button>
-            </div>
+            <LoginForm />
           </>
         )}
       </div>
